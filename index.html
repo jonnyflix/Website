@@ -515,6 +515,25 @@ sqldf(query)</code></pre>
 ## 20 ruthba01 New York Yankees   1933 34
 ## 21 ruthba01 New York Yankees   1934 22
 ## 22 ruthba01    Boston Braves   1935  6</code></pre>
+<hr />
+<p>List all the players named Bob who averaged more than one million dollars per year in salary for their careers. Include last names.</p>
+<pre class="r"><code>query&lt;-&quot;SELECT Master.playerID,nameFirst,nameLast,avg(salary) 
+FROM Master INNER JOIN Salaries
+ON Master.playerID=Salaries.playerID 
+GROUP BY Master.playerID
+HAVING nameFirst='Bob' AND avg(salary)&gt;1000000
+ORDER BY avg(salary) DESC&quot;
+sqldf(query)</code></pre>
+<pre><code>##    playerID nameFirst  nameLast avg(salary)
+## 1 wickmbo01       Bob   Wickman     2635812
+## 2 welchbo01       Bob     Welch     1930417
+## 3 howrybo01       Bob     Howry     1804583
+## 4 hornebo01       Bob    Horner     1416667
+## 5 tewksbo01       Bob Tewksbury     1288182
+## 6 stanlbo01       Bob   Stanley     1067500
+## 7 boonebo01       Bob     Boone     1047580
+## 8 ojedabo01       Bob     Ojeda     1035926</code></pre>
+<hr />
 </div>
 
 

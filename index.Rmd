@@ -116,3 +116,15 @@ ON Batting.teamID=Teams.teamID AND Batting.yearID=Teams.yearID
 WHERE Batting.playerID='ruthba01'"
 sqldf(query)
 ```
+***
+List all the players named Bob who averaged more than one million dollars per year in salary for their careers. Include last names. 
+```{r}
+query<-"SELECT Master.playerID,nameFirst,nameLast,avg(salary) 
+FROM Master INNER JOIN Salaries
+ON Master.playerID=Salaries.playerID 
+GROUP BY Master.playerID
+HAVING nameFirst='Bob' AND avg(salary)>1000000
+ORDER BY avg(salary) DESC"
+sqldf(query)
+```
+***
